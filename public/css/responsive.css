@@ -1,0 +1,18 @@
+@media (max-width: 980px){
+  .hero-grid{grid-template-columns:1fr}
+  .span-8,.span-6,.span-4{grid-column:span 12}
+  .nav-inner{align-items:flex-start}
+}
+@media (max-width: 640px){
+  .container{width:min(1200px,calc(100% - 1rem))}
+  .hero{padding-top:3.2rem}
+  .panel,.search-card{padding:.85rem;border-radius:14px}
+  .nav-links{width:100%;overflow:auto;padding-bottom:.15rem}
+  .nav-controls{width:100%;justify-content:flex-start}
+  #map{height:280px}
+  .chart-wrap{min-height:240px}
+  .chart-wrap canvas{height:220px!important}
+  .btn{width:100%}
+  .row .btn{width:auto}
+}
+html[dir="rtl"] .brand,html[dir="rtl"] .row,html[dir="rtl"] .nav-links,html[dir="rtl"] .status-bar{direction:rtl}

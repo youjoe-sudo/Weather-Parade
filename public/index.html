@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather Parade — Will It Rain On My Parade?</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307111F'/%3E%3Ccircle cx='32' cy='32' r='14' fill='none' stroke='%2338BDF8' stroke-width='4'/%3E%3C/svg%3E">
+  <meta name="description" content="Historical weather probability and event planning using Open-Meteo data and NASA Earth observation resources.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;700&family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="nav no-print" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">◌</span><div><div data-i18n="app_name">Weather Parade</div><small data-i18n="tagline">Will It Rain On My Parade?</small></div></div>
+      <ul class="nav-links">
+        <li><a href="#hero" data-i18n="nav_home">Home</a></li>
+        <li><a href="#historical" data-i18n="nav_historical">Historical Analysis</a></li>
+        <li><a href="#nasa" data-i18n="nav_nasa">NASA Explorer</a></li>
+        <li><a href="#forecast" data-i18n="nav_forecast">Forecast</a></li>
+        <li><a href="#about" data-i18n="nav_about">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <label class="sr-only" for="lang-select">Language</label>
+        <select id="lang-select" class="nav-btn" aria-label="Language selector"><option value="en">English</option><option value="ar">العربية</option></select>
+      </div>
+    </div>
+  </nav>
+
+  <header id="hero" class="hero">
+    <div class="container hero-grid">
+      <div class="fade-in">
+        <span class="badge">NASA Earth observation resources + Open-Meteo</span>
+        <h1 data-i18n="hero_title">Will It Rain On Your Parade?</h1>
+        <p data-i18n="hero_sub">Discover historical weather patterns. Plan outdoor events with confidence.</p>
+        <p class="small muted">Primary focus: <strong>historical weather probability</strong> (how often conditions occurred in past observations), not a deterministic long-range forecast.</p>
+      </div>
+      <div class="search-card fade-in">
+        <div class="field search-wrap">
+          <label for="location-search" data-i18n="search_location">Search location</label>
+          <input id="location-search" type="text" autocomplete="off" data-i18n-placeholder="search_placeholder" placeholder="City, country, or place..." aria-controls="suggestions" aria-expanded="false">
+          <ul id="suggestions" class="suggestions" hidden role="listbox" aria-label="Location suggestions"></ul>
+        </div>
+        <p class="small muted" data-i18n="use_map">Or click the map to select coordinates</p>
+        <div class="row">
+          <button type="button" class="btn quick-loc" data-name="Cairo, Egypt" data-lat="30.0444" data-lon="31.2357">Cairo</button>
+          <button type="button" class="btn quick-loc" data-name="Alexandria, Egypt" data-lat="31.2001" data-lon="29.9187">Alexandria</button>
+          <button type="button" class="btn quick-loc" data-name="London, UK" data-lat="51.5074" data-lon="-0.1278">London</button>
+          <button type="button" class="btn quick-loc" data-name="New York, USA" data-lat="40.7128" data-lon="-74.0060">New York</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <div id="global-error" class="error-box" hidden></div>
+    <div id="global-notice" class="notice" hidden></div>
+
+    <section class="panel" aria-labelledby="dashboard-title">
+      <h2 id="dashboard-title" data-i18n="dashboard">Dashboard</h2>
+      <div class="status-bar">
+        <span class="status-pill"><span data-i18n="location">Location</span>: <strong id="loc-name">—</strong></span>
+        <span class="status-pill"><span data-i18n="coordinates">Coordinates</span>: <strong id="loc-coords">—</strong></span>
+        <span class="status-pill"><span data-i18n="selected_date">Selected date</span>: <strong id="loc-date">—</strong></span>
+        <span class="status-pill"><span data-i18n="historical_status">Historical analysis</span>: <strong id="status-historical">—</strong></span>
+        <span class="status-pill"><span data-i18n="forecast_status">Forecast</span>: <strong id="status-forecast">—</strong></span>
+      </div>
+      <div class="form-grid" style="margin-top:.75rem">
+        <div class="field"><label for="date-input" data-i18n="selected_date">Selected date</label><input id="date-input" type="date"></div>
+        <div class="field"><label for="map-layer" data-i18n="map_layer">Map layer</label><select id="map-layer"><option value="osm" data-i18n="layer_osm">OpenStreetMap</option><option value="nasa" data-i18n="layer_nasa">NASA Satellite (MODIS True Color)</option></select></div>
+        <div class="field"><label for="nasa-date" data-i18n="nasa_date">Imagery date</label><input id="nasa-date" type="date"></div>
+        <div class="field"><label>&nbsp;</label><button id="run-forecast" type="button" class="btn" data-i18n="forecast_title">Short-Term Weather Forecast</button></div>
+      </div>
+      <div id="map" style="margin-top:.75rem" aria-label="Interactive map"></div>
+      <p class="small muted" style="margin:.5rem 0 0">Map tiles © OpenStreetMap contributors. NASA layer uses GIBS MODIS Terra Corrected Reflectance (True Color) for the selected imagery date when available; imagery availability varies by date/zoom and is not live weather.</p>
+    </section>
+
+    <section id="historical" class="panel" aria-labelledby="hist-title">
+      <h2 id="hist-title" data-i18n="historical_title">Historical Weather Analysis</h2>
+      <p class="small muted">Uses Open-Meteo Archive API (historical/reanalysis daily values). Probabilities are calculated from valid observations for the selected month and day window (±2 days) across the chosen past years. Results are planning indicators, not guarantees.</p>
+      <div class="form-grid">
+        <div class="field"><label for="month" data-i18n="month">Month</label><select id="month"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></div>
+        <div class="field"><label for="day" data-i18n="day">Day of month</label><input id="day" type="number" min="0" max="31" placeholder="0 = whole month"></div>
+        <div class="field"><label for="years" data-i18n="years">Past years</label><input id="years" type="number" min="2" max="30" value="10"></div>
+        <div class="field"><label for="heat-th" data-i18n="temp_threshold">Heat threshold (°C)</label><input id="heat-th" type="number" step="0.5" value="32"></div>
+        <div class="field"><label for="cold-th" data-i18n="cold_threshold">Cold threshold (°C)</label><input id="cold-th" type="number" step="0.5" value="5"></div>
+        <div class="field"><label for="rain-th" data-i18n="rain_threshold">Rain threshold (mm)</label><input id="rain-th" type="number" step="0.1" value="1"></div>
+        <div class="field"><label for="wind-th" data-i18n="wind_threshold">Wind threshold (km/h)</label><input id="wind-th" type="number" step="1" value="35"></div>
+        <div class="field"><label>&nbsp;</label><button id="run-analysis" type="button" class="btn primary" data-i18n="run_analysis">Run historical analysis</button></div>
+      </div>
+      <div id="historical-meta" style="margin-top:.75rem"></div>
+      <div id="risk-cards" class="cards" style="margin-top:.75rem"></div>
+      <div id="historical-details" style="margin-top:.75rem"></div>
+      <div class="dashboard-grid" style="margin-top:1rem">
+        <div class="span-6"><div class="chart-wrap"><canvas id="tempChart"></canvas></div></div>
+        <div class="span-6"><div class="chart-wrap"><canvas id="rainChart"></canvas></div></div>
+        <div class="span-6"><div class="chart-wrap"><canvas id="riskChart"></canvas></div></div>
+        <div class="span-6"><div class="chart-wrap"><canvas id="seasonChart"></canvas></div></div>
+      </div>
+    </section>
+
+    <section id="forecast" class="panel" aria-labelledby="fc-title">
+      <h2 id="fc-title" data-i18n="forecast_title">Short-Term Weather Forecast</h2>
+      <div id="forecast-content"><div class="info-box small" data-i18n="forecast_note">Weather forecast (short-term), not historical probability.</div></div>
+    </section>
+
+    <section id="nasa" class="panel" aria-labelledby="nasa-title">
+      <h2 id="nasa-title" data-i18n="nasa_title">NASA Explorer</h2>
+      <p class="small muted">Genuine NASA integrations in this browser app: NASA GIBS satellite imagery layer on the map and location/date-aware research links to NASA Worldview, Giovanni, GES DISC, and Earthdata Search. Direct authenticated dataset downloads/APIs vary by service and may require NASA Earthdata login or server-side processing; this app documents that honestly.</p>
+      <div id="nasa-links"></div>
+    </section>
+
+    <section id="event" class="panel" aria-labelledby="event-title">
+      <h2 id="event-title" data-i18n="event_title">Event Planning</h2>
+      <div class="form-grid">
+        <div class="field"><label for="event-name" data-i18n="event_name">Event name</label><input id="event-name" type="text" placeholder="Outdoor concert"></div>
+        <div class="field"><label for="event-date" data-i18n="selected_date">Event date</label><input id="event-date" type="date"></div>
+        <div class="field"><label for="event-duration" data-i18n="duration">Duration (hours)</label><input id="event-duration" type="number" min="1" value="4"></div>
+        <div class="field"><label for="pref-temp-min" data-i18n="preferred_temp_min">Preferred min temp (°C)</label><input id="pref-temp-min" type="number" value="18"></div>
+        <div class="field"><label for="pref-temp-max" data-i18n="preferred_temp_max">Preferred max temp (°C)</label><input id="pref-temp-max" type="number" value="30"></div>
+        <div class="field"><label for="max-rain" data-i18n="max_rain">Max acceptable rain (mm)</label><input id="max-rain" type="number" step="0.1" value="1"></div>
+        <div class="field"><label for="max-wind" data-i18n="max_wind">Max acceptable wind (km/h)</label><input id="max-wind" type="number" step="1" value="35"></div>
+        <div class="field"><label>&nbsp;</label><button id="plan-event" type="button" class="btn primary" data-i18n="plan_event">Evaluate event suitability</button></div>
+      </div>
+      <div id="event-result" style="margin-top:.75rem"></div>
+    </section>
+
+    <section id="compare" class="panel" aria-labelledby="compare-title">
+      <h2 id="compare-title" data-i18n="compare_title">Location Comparison</h2>
+      <div class="row no-print" style="margin-bottom:.75rem">
+        <button id="add-compare" type="button" class="btn" data-i18n="add_compare">Add current location to comparison</button>
+        <button id="clear-compare" type="button" class="btn" data-i18n="clear_compare">Clear comparison</button>
+      </div>
+      <div id="compare-content"></div>
+    </section>
+
+    <section class="panel no-print" aria-labelledby="export-title">
+      <h2 id="export-title">Export & Sharing</h2>
+      <div class="row">
+        <button id="export-csv" type="button" class="btn" data-i18n="export_csv">Export CSV</button>
+        <button id="export-json" type="button" class="btn" data-i18n="export_json">Export JSON</button>
+        <button id="export-report" type="button" class="btn" data-i18n="export_report">Print / Save PDF report</button>
+        <button id="share-link" type="button" class="btn" data-i18n="share_link">Copy share link</button>
+      </div>
+    </section>
+
+    <section id="about" class="panel" aria-labelledby="about-title">
+      <h2 id="about-title" data-i18n="about_title">About & Methodology</h2>
+      <p class="small muted" data-i18n="disclaimer">Historical probabilities are computed from available observations/reanalysis for the selected location and period. They are not guarantees and not a substitute for official forecasts or warnings.</p>
+      <ul class="small muted">
+        <li><strong>Historical data source:</strong> Open-Meteo Archive API (daily temperature max/min/mean, precipitation sum, wind max). Provider/type are shown in analysis metadata; values are API-delivered historical weather/reanalysis data, not presented as direct NASA product downloads.</li>
+        <li><strong>Forecast data source:</strong> Open-Meteo Forecast API (separately labeled short-term forecast).</li>
+        <li><strong>NASA resources used directly:</strong> GIBS WMTS imagery layer (MODIS Terra Corrected Reflectance True Color) on the interactive map; plus research/discovery links to Worldview, Giovanni, GES DISC, and Earthdata Search.</li>
+        <li><strong>Not implemented as live browser data:</strong> direct authenticated NASA GES DISC/Giovanni dataset queries and fabricated "NASA atmospheric/surface/hydrological" random values from the old prototype were removed. Where direct browser integration is impractical, the app provides documented research links and transparent limitations.</li>
+      </ul>
+    </section>
+
+    <section class="print-only panel">
+      <h2>Weather Parade Report</h2>
+      <p>Generated from the current browser state. Historical analysis uses Open-Meteo Archive data and configured thresholds; forecast (if shown) is short-term Open-Meteo forecast.</p>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <p data-i18n="footer_sources">Data sources: Open-Meteo (forecast/archive), OpenStreetMap/Nominatim, NASA GIBS/Worldview/Giovanni/Earthdata links.</p>
+    <p class="small">Run through a local HTTP server (ES modules + APIs). Example: open the repo in VS Code Live Server, or run <code>node server.js</code> from the project root and open <code>http://localhost:5000</code>.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

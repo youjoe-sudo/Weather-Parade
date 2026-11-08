@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>About — Weather Parade</title>
+  <link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <main class="container" style="padding:2rem 0">
+    <p><a class="btn" href="index.html">← Back to Weather Parade</a></p>
+    <section class="panel">
+      <h1>About Weather Parade</h1>
+      <p>Weather Parade helps users evaluate historical weather patterns for outdoor event planning. It focuses on historical probability from available observations, not deterministic long-range forecasting.</p>
+      <h2>Data sources</h2>
+      <ul>
+        <li><strong>Open-Meteo Forecast API</strong> — short-term forecast.</li>
+        <li><strong>Open-Meteo Archive API</strong> — historical daily weather/reanalysis values used for probability calculations.</li>
+        <li><strong>OpenStreetMap/Nominatim</strong> — geocoding and base map tiles.</li>
+        <li><strong>NASA GIBS</strong> — MODIS Terra Corrected Reflectance imagery layer.</li>
+        <li><strong>NASA Worldview, Giovanni, GES DISC, Earthdata Search</strong> — research/discovery links.</li>
+      </ul>
+      <h2>Scientific honesty</h2>
+      <p>The app does not fabricate NASA observations. Historical probabilities are computed from valid API-delivered observations with sample counts and thresholds shown. Some NASA services require authentication or server-side workflows; those are documented rather than faked.</p>
+    </section>
+  </main>
+</body>
+</html>
