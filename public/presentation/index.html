@@ -1,0 +1,1581 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weather Parade — العرض التقديمي</title>
+    <meta
+      name="description"
+      content="عرض تفاعلي لمشروع Weather Parade: تحليل الطقس التاريخي، تقييم مخاطر الفعاليات الخارجية، NASA GIBS، والتوقعات قصيرة المدى."
+    />
+    <meta name="theme-color" content="#07152E" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/presentation.css" />
+    <link rel="stylesheet" href="css/slides.css" />
+    <link rel="stylesheet" href="css/components-a.css" />
+    <link rel="stylesheet" href="css/components-b.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+
+  <body class="deck-body">
+    <a class="skip-link" href="#deck-stage">تجاوز إلى محتوى العرض</a>
+
+    <div class="deck-loader" id="deck-loader" aria-hidden="true">
+      <img src="../assets/logo-mark.svg" alt="" width="54" height="48" />
+      <span>Weather Parade</span>
+      <div class="deck-loader__bar"><i></i></div>
+    </div>
+
+    <div class="deck-progress" aria-hidden="true"><span id="deck-progress-fill"></span></div>
+
+    <header class="deck-topbar" id="deck-topbar">
+      <a class="deck-brand" href="../index.html" aria-label="Weather Parade — التطبيق">
+        <img src="../assets/logo-mark.svg" alt="" width="40" height="35" />
+        <span class="deck-brand__words">
+          <span>Weather</span>
+          <em>Parade</em>
+        </span>
+      </a>
+
+      <div class="deck-chapter" aria-hidden="true">
+        <span class="deck-chapter__num" id="deck-chapter-num">01</span>
+        <span class="deck-chapter__line"></span>
+        <span class="deck-chapter__name" id="deck-chapter-name">الغلاف</span>
+      </div>
+
+      <div class="deck-tools">
+        <button type="button" class="deck-tool" data-action="overview" aria-label="نظرة عامة على الشرائح">
+          <i data-lucide="layout-grid" aria-hidden="true"></i>
+          <span>نظرة عامة</span>
+        </button>
+        <button type="button" class="deck-tool" data-action="help" aria-label="اختصارات لوحة المفاتيح">
+          <i data-lucide="help-circle" aria-hidden="true"></i>
+          <span>المساعدة</span>
+        </button>
+        <button type="button" class="deck-tool" data-action="present" aria-label="وضع العرض">
+          <i data-lucide="presentation" aria-hidden="true"></i>
+          <span>وضع العرض</span>
+        </button>
+        <button type="button" class="deck-tool deck-tool--icon" data-action="fullscreen" aria-label="ملء الشاشة">
+          <i data-lucide="maximize" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="deck-stage" id="deck-stage" aria-live="polite">
+      <!-- 01 · COVER -->
+      <section
+        class="slide slide--cover is-active"
+        id="slide-1"
+        data-theme="dark"
+        data-effect="scale"
+        data-title="الغلاف"
+        data-chapter="مقدمة"
+        aria-label="الغلاف — Weather Parade"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="cover-stars"></div>
+          <div class="cover-glow"></div>
+          <div class="cover-grid"></div>
+        </div>
+
+        <div class="slide__content cover">
+          <div class="cover__copy">
+            <p class="eyebrow reveal" style="--i: 0">
+              <span class="eyebrow__dot"></span>
+              <span class="ltr" lang="en">NASA SPACE APPS CHALLENGE</span>
+              <span>·</span>
+              <span class="ltr" lang="en">EARTH OBSERVATION</span>
+            </p>
+            <h1 class="cover__title reveal" style="--i: 1">
+              Weather <em>Parade</em>
+            </h1>
+            <p class="cover__tagline reveal" style="--i: 2" dir="ltr" lang="en">
+              Will It Rain On My Parade?
+            </p>
+            <p class="cover__lede reveal" style="--i: 3">
+              قرارات أفضل للفعاليات الخارجية، مبنية على ما فعله الطقس
+              فعلًا — لا على التخمين.
+            </p>
+
+            <div class="cover__actions reveal" style="--i: 4">
+              <button type="button" class="btn btn--primary" data-action="next">
+                <span>ابدأ العرض</span>
+                <i data-lucide="arrow-left" aria-hidden="true"></i>
+              </button>
+              <a class="btn btn--ghost" href="../index.html" target="_blank" rel="noopener">
+                <span>افتح التطبيق</span>
+                <i data-lucide="external-link" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <ul class="cover__meta reveal" style="--i: 5">
+              <li><i data-lucide="line-chart" aria-hidden="true"></i> Historical Analysis</li>
+              <li><i data-lucide="satellite" aria-hidden="true"></i> NASA GIBS</li>
+              <li><i data-lucide="languages" aria-hidden="true"></i> AR / EN</li>
+              <li><i data-lucide="layers" aria-hidden="true"></i> 22 شريحة</li>
+            </ul>
+          </div>
+
+          <div class="cover__visual">
+            <div class="cover__orbit cover__orbit--outer" aria-hidden="true"></div>
+            <div class="cover__orbit cover__orbit--inner" aria-hidden="true"></div>
+            <div class="deck-earth-stage" id="deck-earth-stage" aria-hidden="true">
+              <canvas id="deck-earth-canvas"></canvas>
+              <div class="deck-earth-fallback"></div>
+            </div>
+            <div class="cover__hud cover__hud--top">
+              <span>EARTH OBSERVATION</span>
+              <span>23.4° AXIAL TILT</span>
+            </div>
+            <div class="cover__hud cover__hud--bottom">
+              <span><i class="hud-dot"></i> LIVE PRESENTATION</span>
+              <span>NASA BLUE MARBLE MOSAIC</span>
+            </div>
+            <span class="cover__cross cover__cross--1" aria-hidden="true"></span>
+            <span class="cover__cross cover__cross--2" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <div class="cover__foot">
+          <span><kbd>←</kbd> للتالي · <kbd>→</kbd> للسابق · <kbd>Space</kbd> للتالي</span>
+          <span class="cover__foot-brand">Weather Parade · 2026</span>
+        </div>
+      </section>
+
+      <!-- 02 · PROBLEM -->
+      <section
+        class="slide"
+        id="slide-2"
+        data-theme="dark"
+        data-effect="slide"
+        data-title="المشكلة"
+        data-chapter="السياق"
+        aria-label="المشكلة"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--danger"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head reveal" style="--i: 0">
+            <p class="eyebrow"><span class="eyebrow__dot"></span> THE PROBLEM</p>
+            <h2 class="slide__title">الطقس لا ينتظر<br />تأكيد الحجز.</h2>
+            <p class="slide__lede">
+              الفعاليات الخارجية تُحجز قبل أشهر، بينما التوقعات الموثوقة لا
+              تمتد إلى ما بعد أسبوع. الفجوة بين قرار الحجز والمعلومة المتاحة
+              هي المشكلة التي نبني لها أداة.
+            </p>
+          </div>
+
+          <div class="problem-grid">
+            <div class="problem-timeline reveal" style="--i: 1">
+              <div class="timeline__labels">
+                <span>اختيار الموقع</span>
+                <span>تثبيت التاريخ</span>
+                <span>يوم الفعالية</span>
+              </div>
+              <div class="timeline__track">
+                <span class="timeline__dot"></span>
+                <span class="timeline__gap">
+                  <span>فجوة عدم اليقين</span>
+                </span>
+                <span class="timeline__dot timeline__dot--end"></span>
+              </div>
+              <p class="timeline__note">
+                Historical probabilities تعمل داخل هذه الفجوة: لا تتوقع
+                المستقبل، بل تُظهر كيف تصرّف الطقس سابقًا في نفس النافذة.
+              </p>
+            </div>
+
+            <div class="pain-cards">
+              <article class="pain-card reveal" style="--i: 2">
+                <span class="pain-card__icon"><i data-lucide="calendar-clock" aria-hidden="true"></i></span>
+                <h3>قرار مبكر، معلومة متأخرة</h3>
+                <p>تاريخ الحجز يُثبّت قبل أن يصبح الطقس معروفًا.</p>
+              </article>
+              <article class="pain-card reveal" style="--i: 3">
+                <span class="pain-card__icon"><i data-lucide="cloud-lightning" aria-hidden="true"></i></span>
+                <h3>التوقعات البعيدة غير حاسمة</h3>
+                <p>التوقعات قصيرة الأجل بطبيعتها، ولا تصلح كضمان لتاريخ بعيد.</p>
+              </article>
+              <article class="pain-card reveal" style="--i: 4">
+                <span class="pain-card__icon"><i data-lucide="split" aria-hidden="true"></i></span>
+                <h3>المخاطر ليست رقمًا واحدًا</h3>
+                <p>الحرارة والمطر والرياح والبرودة تتفاعل في تجربة الفعالية.</p>
+              </article>
+            </div>
+          </div>
+
+          <p class="statement reveal" style="--i: 5">
+            «لا نستطيع التحكم بالطقس. نستطيع تحسين القرار.»
+          </p>
+        </div>
+      </section>
+
+      <!-- 03 · SOLUTION -->
+      <section
+        class="slide"
+        id="slide-3"
+        data-theme="light"
+        data-effect="slide"
+        data-title="الحل"
+        data-chapter="الفكرة"
+        aria-label="الحل"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--blue"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head reveal" style="--i: 0">
+            <p class="eyebrow"><span class="eyebrow__dot"></span> THE SOLUTION</p>
+            <h2 class="slide__title">من ذاكرة الطقس إلى قرار<br />يمكن الدفاع عنه.</h2>
+            <p class="slide__lede">
+              تجمع <span class="ltr" lang="en">Weather Parade</span> بين
+              احتمالات تاريخية محسوبة، وتوقعات قصيرة الأجل منفصلة، وصور
+              Earth observation — في مسار واحد واضح المصادر.
+            </p>
+          </div>
+
+          <div class="pipeline reveal" style="--i: 1">
+            <div class="pipeline__node">
+              <span class="pipeline__icon"><i data-lucide="map-pin" aria-hidden="true"></i></span>
+              <span class="pipeline__num">01</span>
+              <h3>موقع + تاريخ</h3>
+              <p>إحداثيات ونافذة زمنية</p>
+            </div>
+            <span class="pipeline__arrow"><i data-lucide="chevron-left" aria-hidden="true"></i></span>
+            <div class="pipeline__node">
+              <span class="pipeline__icon"><i data-lucide="database" aria-hidden="true"></i></span>
+              <span class="pipeline__num">02</span>
+              <h3>Archive API</h3>
+              <p>ملاحظات يومية صالحة</p>
+            </div>
+            <span class="pipeline__arrow"><i data-lucide="chevron-left" aria-hidden="true"></i></span>
+            <div class="pipeline__node pipeline__node--accent">
+              <span class="pipeline__icon"><i data-lucide="gauge" aria-hidden="true"></i></span>
+              <span class="pipeline__num">03</span>
+              <h3>احتمالات + Comfort</h3>
+              <p>أرقام قابلة للتتبع</p>
+            </div>
+            <span class="pipeline__arrow"><i data-lucide="chevron-left" aria-hidden="true"></i></span>
+            <div class="pipeline__node">
+              <span class="pipeline__icon"><i data-lucide="target" aria-hidden="true"></i></span>
+              <span class="pipeline__num">04</span>
+              <h3>قرار التخطيط</h3>
+              <p>مقارنة، تصدير، مشاركة</p>
+            </div>
+          </div>
+
+          <div class="pillar-grid">
+            <article class="pillar reveal" style="--i: 2">
+              <span class="pillar__tag">HISTORICAL</span>
+              <h3>Historical Probabilities</h3>
+              <p>تكرار تجاوز الحدود داخل ملاحظات ماضية — لا توقعًا مستقبليًا.</p>
+            </article>
+            <article class="pillar reveal" style="--i: 3">
+              <span class="pillar__tag pillar__tag--sun">FORECAST</span>
+              <h3>Short-Term Forecasting</h3>
+              <p>حالة الآن، 48 ساعة، و7 أيام — مع فصل واضح عن التاريخ.</p>
+            </article>
+            <article class="pillar reveal" style="--i: 4">
+              <span class="pillar__tag pillar__tag--sky">EARTH OBSERVATION</span>
+              <h3>NASA GIBS Context</h3>
+              <p>صور MODIS Terra للتاريخ والموقع، كسياق بصري لا كطقس حي.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 · OBJECTIVES -->
+      <section
+        class="slide"
+        id="slide-4"
+        data-theme="light"
+        data-effect="fade"
+        data-title="الأهداف"
+        data-chapter="الفكرة"
+        aria-label="أهداف المشروع"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--sky"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> OBJECTIVES</p>
+              <h2 class="slide__title">أربعة أهداف،<br />ومقياس واحد: قرار أوضح.</h2>
+            </div>
+            <p class="slide__lede">
+              كل هدف منها مرتبط بوظيفة موجودة في التطبيق، وليس بشعار
+              تسويقي. الواجهة تعرض النتيجة، والمصدر، وحدود الثقة.
+            </p>
+          </div>
+
+          <div class="objective-grid">
+            <article class="objective reveal" style="--i: 1">
+              <span class="objective__num">01</span>
+              <i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>
+              <h3>Data-Driven Decisions</h3>
+              <p>استبدال الانطباع بأرقام قابلة للتتبع من الأرشيف.</p>
+            </article>
+            <article class="objective reveal" style="--i: 2">
+              <span class="objective__num">02</span>
+              <i data-lucide="shield-alert" aria-hidden="true"></i>
+              <h3>Weather Risk Identification</h3>
+              <p>الحرارة، البرودة، الرياح، المطر، وعدم الراحة في مكان واحد.</p>
+            </article>
+            <article class="objective reveal" style="--i: 3">
+              <span class="objective__num">03</span>
+              <i data-lucide="map-pinned" aria-hidden="true"></i>
+              <h3>Location Selection</h3>
+              <p>مقارنة المواقع على نفس النافذة والحدود قبل تثبيت المكان.</p>
+            </article>
+            <article class="objective reveal" style="--i: 4">
+              <span class="objective__num">04</span>
+              <i data-lucide="microscope" aria-hidden="true"></i>
+              <h3>Scientific Transparency</h3>
+              <p>المصدر، العينة، والتغطية ظاهرة — ونقص البيانات معلن.</p>
+            </article>
+          </div>
+
+          <p class="statement statement--light reveal" style="--i: 5">
+            «الشفافية ليست ملحقًا. إنها جزء من النتيجة.»
+          </p>
+        </div>
+      </section>
+
+      <!-- 05 · DATA SOURCES -->
+      <section
+        class="slide"
+        id="slide-5"
+        data-theme="light"
+        data-effect="slide"
+        data-title="مصادر البيانات"
+        data-chapter="البيانات"
+        aria-label="مصادر البيانات"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--blue"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> DATA SOURCES</p>
+              <h2 class="slide__title">أربع طبقات بيانات،<br />ودور مختلف لكل واحدة.</h2>
+            </div>
+            <p class="slide__lede">
+              التكامل الفعلي مفصول بصريًا عن روابط البحث الخارجية. لا ندّعي
+              أن كل خدمة NASA تعمل كـ API مباشر داخل المتصفح.
+            </p>
+          </div>
+
+          <div class="source-layout">
+            <div class="source-list">
+              <article class="source-row reveal" style="--i: 1">
+                <span class="source-row__icon"><i data-lucide="archive" aria-hidden="true"></i></span>
+                <div>
+                  <h3>Open-Meteo Archive API</h3>
+                  <p>قيم يومية تاريخية: حرارة عظمى/صغرى/متوسط، هطول، وأقصى رياح.</p>
+                  <span class="source-row__use">الحساب الأساسي للاحتمالات</span>
+                </div>
+                <span class="tag tag--actual">تكامل فعلي</span>
+              </article>
+              <article class="source-row reveal" style="--i: 2">
+                <span class="source-row__icon"><i data-lucide="cloud-sun" aria-hidden="true"></i></span>
+                <div>
+                  <h3>Open-Meteo Forecast API</h3>
+                  <p>الحالة الحالية، 48 ساعة ساعية، و7 أيام يومية.</p>
+                  <span class="source-row__use">توقعات قصيرة، منفصلة عن التاريخ</span>
+                </div>
+                <span class="tag tag--actual">تكامل فعلي</span>
+              </article>
+              <article class="source-row reveal" style="--i: 3">
+                <span class="source-row__icon"><i data-lucide="satellite" aria-hidden="true"></i></span>
+                <div>
+                  <h3>NASA GIBS</h3>
+                  <p>MODIS Terra Corrected Reflectance True Color عبر WMTS/WMS.</p>
+                  <span class="source-row__use">طبقة خريطة ومعاينة للموقع والتاريخ</span>
+                </div>
+                <span class="tag tag--nasa">تكامل فعلي</span>
+              </article>
+              <article class="source-row reveal" style="--i: 4">
+                <span class="source-row__icon"><i data-lucide="map" aria-hidden="true"></i></span>
+                <div>
+                  <h3>OpenStreetMap + Nominatim</h3>
+                  <p>بلاطات الخريطة، البحث الجغرافي، والتحويل العكسي للإحداثيات.</p>
+                  <span class="source-row__use">اختيار الموقع والخريطة</span>
+                </div>
+                <span class="tag tag--actual">تكامل فعلي</span>
+              </article>
+              <article class="source-row reveal" style="--i: 5">
+                <span class="source-row__icon"><i data-lucide="external-link" aria-hidden="true"></i></span>
+                <div>
+                  <h3>Worldview · Giovanni · GES DISC · Earthdata Search</h3>
+                  <p>روابط رسمية لاستكشاف مجموعات البيانات ومسارات البحث.</p>
+                  <span class="source-row__use">ليست تكامل API داخل التطبيق</span>
+                </div>
+                <span class="tag tag--link">رابط خارجي</span>
+              </article>
+            </div>
+
+            <aside class="source-aside reveal" style="--i: 3">
+              <span class="source-aside__icon"><i data-lucide="badge-check" aria-hidden="true"></i></span>
+              <h3>التكامل الفعلي<br />مقابل رابط البحث</h3>
+              <p>
+                GIBS وحدها هي تكامل صور مباشر داخل المتصفح. Worldview
+                وGiovanni وGES DISC وEarthdata Search تُفتح كروابط رسمية،
+                وقد تتطلب تسجيل دخول Earthdata أو معالجة على الخادم.
+              </p>
+              <ul class="mini-checks">
+                <li><i data-lucide="check" aria-hidden="true"></i> Historical observations من Open-Meteo Archive</li>
+                <li><i data-lucide="check" aria-hidden="true"></i> Imagery context من NASA GIBS</li>
+                <li><i data-lucide="x" aria-hidden="true"></i> لا ندّعي تنزيل NASA datasets مباشرة</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 · MAP -->
+      <section
+        class="slide"
+        id="slide-6"
+        data-theme="dark"
+        data-effect="media"
+        data-title="البحث والخريطة"
+        data-chapter="التجربة"
+        aria-label="البحث عن الموقع والخريطة التفاعلية"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--blue"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> LOCATION SEARCH &amp; MAP</p>
+              <h2 class="slide__title">ابدأ من المكان،<br />لا من التخمين.</h2>
+            </div>
+            <p class="slide__lede">
+              ابحث عن مدينة أو انقر على الخريطة. الإحداثيات تبقى مرئية،
+              والطبقة قابلة للتبديل بين OpenStreetMap وصور NASA.
+            </p>
+          </div>
+
+          <div class="media-layout">
+            <figure class="browser-frame reveal" style="--i: 1">
+              <div class="browser-frame__bar">
+                <span class="browser-dots"><i></i><i></i><i></i></span>
+                <span class="browser-frame__url">weather-parade / historical-analysis</span>
+                <span class="browser-frame__live">LIVE APP</span>
+              </div>
+              <img
+                src="assets/app/historical.png"
+                alt="لقطة حقيقية من تطبيق Weather Parade تعرض البحث عن الموقع والخريطة وتحليل القاهرة"
+                loading="lazy"
+              />
+              <figcaption>لقطة حقيقية من التطبيق — Cairo, Egypt</figcaption>
+            </figure>
+
+            <div class="media-side">
+              <ul class="feature-list reveal" style="--i: 2">
+                <li>
+                  <i data-lucide="search" aria-hidden="true"></i>
+                  <div><strong>Nominatim Search</strong><span>اقتراحات مع debounce وتحديد موقع.</span></div>
+                </li>
+                <li>
+                  <i data-lucide="map" aria-hidden="true"></i>
+                  <div><strong>Leaflet + OpenStreetMap</strong><span>خريطة تفاعلية مع علامة قابلة للسحب.</span></div>
+                </li>
+                <li>
+                  <i data-lucide="mouse-pointer-click" aria-hidden="true"></i>
+                  <div><strong>Map Pick</strong><span>النقر يحوّل الإحداثيات إلى موقع عبر reverse geocoding.</span></div>
+                </li>
+                <li>
+                  <i data-lucide="satellite" aria-hidden="true"></i>
+                  <div><strong>NASA Layer</strong><span>تبديل إلى صور MODIS بتاريخ قابل للتغيير.</span></div>
+                </li>
+              </ul>
+
+              <div class="coordinate-card reveal" style="--i: 3">
+                <span class="coordinate-card__label">SELECTED LOCATION</span>
+                <strong>Cairo, Egypt</strong>
+                <span class="coordinate-card__coords"><bdi>30.0444° N</bdi> · <bdi>31.2357° E</bdi></span>
+                <span class="coordinate-card__note">نفس الإحداثيات تنتقل إلى التحليل والتنبؤ وNASA.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 · HISTORICAL ANALYSIS -->
+      <section
+        class="slide"
+        id="slide-7"
+        data-theme="light"
+        data-effect="slide"
+        data-title="التحليل التاريخي"
+        data-chapter="المنهجية"
+        aria-label="التحليل التاريخي"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--sky"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> HISTORICAL ANALYSIS</p>
+              <h2 class="slide__title">عشر سنوات،<br />في نافذة واحدة.</h2>
+            </div>
+            <p class="slide__lede">
+              يفتح التحليل أرشيف الطقس اليومي، ثم يحتفظ فقط بالملاحظات
+              الصالحة داخل الشهر والنافذة المختارة — ويترك الباقي خارج الحساب.
+            </p>
+          </div>
+
+          <div class="method-layout">
+            <ol class="method-steps">
+              <li class="reveal" style="--i: 1">
+                <span class="method-steps__num">01</span>
+                <div><h3>اسحب الأرشيف</h3><p>قيم يومية من Open-Meteo Archive API: حرارة عظمى/صغرى/متوسط، هطول، وأقصى رياح.</p></div>
+              </li>
+              <li class="reveal" style="--i: 2">
+                <span class="method-steps__num">02</span>
+                <div><h3>حدّد النافذة</h3><p>الشهر كامل عند اختيار اليوم 0، أو ±2 يوم حول اليوم المحدد لزيادة العينة.</p></div>
+              </li>
+              <li class="reveal" style="--i: 3">
+                <span class="method-steps__num">03</span>
+                <div><h3>افلتر القيم الصالحة</h3><p>كل مقياس يُحسب على عدد ملاحظاته الصالحة، لا على عدد الأيام الكلي.</p></div>
+              </li>
+              <li class="reveal" style="--i: 4">
+                <span class="method-steps__num">04</span>
+                <div><h3>طبّق الحدود</h3><p>الحرارة 32°C، البرودة 5°C، المطر 1mm، الرياح 35km/h — كلها قابلة للتعديل.</p></div>
+              </li>
+            </ol>
+
+            <div class="window-card reveal" style="--i: 2">
+              <div class="window-card__head">
+                <span>SELECTED WINDOW</span>
+                <span class="tag tag--actual">±2 DAYS</span>
+              </div>
+              <div class="calendar-strip">
+                <span class="calendar-day">07</span>
+                <span class="calendar-day calendar-day--edge">08</span>
+                <span class="calendar-day calendar-day--selected">09</span>
+                <span class="calendar-day calendar-day--edge">10</span>
+                <span class="calendar-day calendar-day--edge">11</span>
+                <span class="calendar-day calendar-day--muted">12</span>
+                <span class="calendar-day calendar-day--muted">13</span>
+              </div>
+              <div class="window-card__line"></div>
+              <p>اليوم المحدد في المنتصف، واليومان قبله وبعده داخل الحساب. الأيام خارج النافذة لا تُستخدم.</p>
+              <div class="variable-chips">
+                <span>temperature_2m_max</span>
+                <span>temperature_2m_min</span>
+                <span>temperature_2m_mean</span>
+                <span>precipitation_sum</span>
+                <span>wind_speed_10m_max</span>
+              </div>
+              <p class="window-card__foot">
+                النطاق الافتراضي 10 سنوات (حتى 30)، بحد أدنى 1940 ومهلة نشر
+                5 أيام في نهاية الأرشيف.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 · PROBABILITY -->
+      <section
+        class="slide"
+        id="slide-8"
+        data-theme="light"
+        data-effect="fade"
+        data-title="الاحتمالات"
+        data-chapter="المنهجية"
+        aria-label="الاحتمالات التاريخية"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--blue"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head reveal" style="--i: 0">
+            <p class="eyebrow"><span class="eyebrow__dot"></span> HISTORICAL PROBABILITIES</p>
+            <h2 class="slide__title">المعادلة قبل النسبة.</h2>
+            <p class="slide__lede">
+              كل نسبة في الواجهة قابلة للتفكيك إلى بسط ومقام. لا توجد نسبة
+              بلا عدد أيام تحتها.
+            </p>
+          </div>
+
+          <div class="probability-layout">
+            <div class="formula-panel reveal" style="--i: 1">
+              <span class="formula-panel__label">PROBABILITY</span>
+              <div class="formula-panel__eq">
+                <span class="formula-panel__fraction">
+                  <span>Qualifying observations</span>
+                  <span class="formula-panel__bar"></span>
+                  <span>Valid observations</span>
+                </span>
+                <span class="formula-panel__times">× 100</span>
+              </div>
+              <div class="definition-grid">
+                <div>
+                  <h3>Qualifying observations</h3>
+                  <p>الأيام التي تجاوزت الحد المختار (مثل مطر ≥ 1 mm).</p>
+                </div>
+                <div>
+                  <h3>Valid observations</h3>
+                  <p>الأيام التي تحتوي قيمة رقمية صالحة للمقياس نفسه.</p>
+                </div>
+              </div>
+              <p class="formula-panel__note">
+                النسبة تصف تكرارًا في الماضي، وليست ضمانًا لتاريخ مستقبلي.
+              </p>
+            </div>
+
+            <aside class="example-card reveal" style="--i: 2">
+              <span class="tag tag--example">EXAMPLE ONLY · مثال فقط</span>
+              <div class="example-ring">
+                <svg viewBox="0 0 120 120" role="img" aria-label="مثال حسابي: 14 بالمئة">
+                  <circle class="example-ring__track" cx="60" cy="60" r="50" pathLength="100"></circle>
+                  <circle class="example-ring__value" cx="60" cy="60" r="50" pathLength="100"></circle>
+                </svg>
+                <div class="example-ring__label"><strong>14<small>%</small></strong><span>42 / 300</span></div>
+              </div>
+              <div class="example-card__math">
+                <span><bdi>42</bdi> qualifying</span>
+                <span>÷</span>
+                <span><bdi>300</bdi> valid</span>
+                <span>× 100 = 14.0%</span>
+              </div>
+              <p>
+                هذه أرقام توضيحية فقط، وليست نتيجة تحليل حقيقية. النتائج
+                الفعلية تظهر بعد تشغيل التحليل على موقع وتاريخ محددين.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- 09 · RISK -->
+      <section
+        class="slide"
+        id="slide-9"
+        data-theme="light"
+        data-effect="slide"
+        data-title="تقييم المخاطر"
+        data-chapter="المنهجية"
+        aria-label="تقييم مخاطر الطقس"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--danger"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> WEATHER RISK ASSESSMENT</p>
+              <h2 class="slide__title">خمسة أبعاد،<br />وخمسة حدود واضحة.</h2>
+            </div>
+            <p class="slide__lede">
+              كل مخاطرة هي قاعدة بسيطة قابلة للفحص، وليست درجة غامضة.
+              الحدود الافتراضية معروضة، ويمكن تعديلها من واجهة التحليل.
+            </p>
+          </div>
+
+          <div class="risk-grid">
+            <article class="risk-card risk-card--hot reveal" style="--i: 1">
+              <span class="risk-card__icon"><i data-lucide="thermometer-sun" aria-hidden="true"></i></span>
+              <span class="risk-card__num">01</span>
+              <h3>Very Hot</h3>
+              <p>الحرارة العظمى</p>
+              <strong>≥ 32°C</strong>
+            </article>
+            <article class="risk-card risk-card--cold reveal" style="--i: 2">
+              <span class="risk-card__icon"><i data-lucide="thermometer-snowflake" aria-hidden="true"></i></span>
+              <span class="risk-card__num">02</span>
+              <h3>Very Cold</h3>
+              <p>الحرارة الصغرى</p>
+              <strong>≤ 5°C</strong>
+            </article>
+            <article class="risk-card risk-card--wind reveal" style="--i: 3">
+              <span class="risk-card__icon"><i data-lucide="wind" aria-hidden="true"></i></span>
+              <span class="risk-card__num">03</span>
+              <h3>Very Windy</h3>
+              <p>أقصى سرعة رياح</p>
+              <strong>≥ 35 km/h</strong>
+            </article>
+            <article class="risk-card risk-card--rain reveal" style="--i: 4">
+              <span class="risk-card__icon"><i data-lucide="cloud-rain" aria-hidden="true"></i></span>
+              <span class="risk-card__num">04</span>
+              <h3>Very Wet</h3>
+              <p>مجموع الهطول اليومي</p>
+              <strong>≥ 1 mm</strong>
+            </article>
+            <article class="risk-card risk-card--uncomfortable reveal" style="--i: 5">
+              <span class="risk-card__icon"><i data-lucide="gauge" aria-hidden="true"></i></span>
+              <span class="risk-card__num">05</span>
+              <div>
+                <h3>Very Uncomfortable</h3>
+                <p>مشتقة من درجة الراحة، وليست متغيرًا جويًا مستقلًا.</p>
+              </div>
+              <strong>100 − Comfort Score</strong>
+            </article>
+          </div>
+
+          <p class="slide-note reveal" style="--i: 6">
+            <i data-lucide="info" aria-hidden="true"></i>
+            النسبة = عدد الملاحظات الصالحة التي تجاوزت الحد ÷ إجمالي
+            الملاحظات الصالحة × 100. كل بطاقة تعرض العدد والمجموع.
+          </p>
+        </div>
+      </section>
+
+      <!-- 10 · COMFORT -->
+      <section
+        class="slide"
+        id="slide-10"
+        data-theme="dark"
+        data-effect="scale"
+        data-title="درجة الراحة"
+        data-chapter="المنهجية"
+        aria-label="درجة الراحة"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--success"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head reveal" style="--i: 0">
+            <p class="eyebrow"><span class="eyebrow__dot"></span> COMFORT SCORE</p>
+            <h2 class="slide__title">درجة واحدة،<br />بوزن معلن.</h2>
+            <p class="slide__lede">
+              نبدأ من 100، ونطرح مساهمة كل مخاطرة بوزنها الأقصى. النتيجة
+              مؤشر تخطيطي شفاف، وليست مؤشرًا طقسًا رسميًا.
+            </p>
+          </div>
+
+          <div class="comfort-layout">
+            <div class="comfort-ring-card reveal" style="--i: 1">
+              <div class="comfort-donut" aria-label="أوزان درجة الراحة: المطر 35، الحرارة 25، البرودة 20، الرياح 20">
+                <div class="comfort-donut__hole">
+                  <strong>100</strong>
+                  <span>MAX SCORE</span>
+                </div>
+              </div>
+              <div class="comfort-legend">
+                <span><i class="legend-dot legend-dot--rain"></i> Rain <b>35</b></span>
+                <span><i class="legend-dot legend-dot--heat"></i> Heat <b>25</b></span>
+                <span><i class="legend-dot legend-dot--cold"></i> Cold <b>20</b></span>
+                <span><i class="legend-dot legend-dot--wind"></i> Wind <b>20</b></span>
+              </div>
+            </div>
+
+            <div class="comfort-copy">
+              <div class="formula-code reveal" style="--i: 2">
+                <span class="formula-code__label">RULE</span>
+                <code dir="ltr">comfort = 100 − [ min(35, rain×0.35) + min(25, heat×0.25) + min(20, cold×0.20) + min(20, wind×0.20) ]</code>
+                <span class="formula-code__clamp">clamp 0 … 100</span>
+              </div>
+
+              <div class="comfort-scale reveal" style="--i: 3">
+                <div class="comfort-scale__bar">
+                  <span class="comfort-scale__seg comfort-scale__seg--high"></span>
+                  <span class="comfort-scale__seg comfort-scale__seg--mid"></span>
+                  <span class="comfort-scale__seg comfort-scale__seg--low"></span>
+                </div>
+                <div class="comfort-scale__labels">
+                  <span><b>≥ 70</b> Low concern</span>
+                  <span><b>45–69</b> Moderate</span>
+                  <span><b>&lt; 45</b> High concern</span>
+                </div>
+              </div>
+
+              <p class="comfort-note reveal" style="--i: 4">
+                <i data-lucide="triangle-alert" aria-hidden="true"></i>
+                <span>هذا score تخطيطي مبني على قواعد، وليس Official Meteorological Index. درجة عدم الراحة المعروضة = <bdi>100 − comfort</bdi>.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 · FORECAST -->
+      <section
+        class="slide"
+        id="slide-11"
+        data-theme="light"
+        data-effect="media"
+        data-title="التوقعات"
+        data-chapter="التجربة"
+        aria-label="التوقعات قصيرة المدى"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--sun"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> SHORT-TERM FORECASTING</p>
+              <h2 class="slide__title">أسبوع واحد،<br />بحدود واضحة.</h2>
+              <span class="forecast-badge"><i data-lucide="clock-3" aria-hidden="true"></i> Forecast — not historical probability</span>
+            </div>
+            <p class="slide__lede">
+              Forecast API منفصل تمامًا عن Historical Analysis. يُستخدم
+              للتحقق النهائي قبل الفعالية، لا للادعاء بمعرفة الطقس بعد أشهر.
+            </p>
+          </div>
+
+          <div class="forecast-layout">
+            <figure class="browser-frame browser-frame--compact reveal" style="--i: 1">
+              <div class="browser-frame__bar">
+                <span class="browser-dots"><i></i><i></i><i></i></span>
+                <span class="browser-frame__url">weather-parade / forecast</span>
+                <span class="browser-frame__live browser-frame__live--sun">FORECAST</span>
+              </div>
+              <img
+                src="assets/app/forecast.png"
+                alt="لقطة حقيقية من التطبيق تعرض التوقعات قصيرة المدى للقاهرة"
+                loading="lazy"
+              />
+              <figcaption>لقطة حقيقية من التطبيق — Short-term forecast</figcaption>
+            </figure>
+
+            <div class="forecast-side">
+              <ul class="forecast-list reveal" style="--i: 2">
+                <li><i data-lucide="sun" aria-hidden="true"></i><div><strong>Current conditions</strong><span>الحرارة، الرطوبة، الرياح، والهطول الآن.</span></div></li>
+                <li><i data-lucide="activity" aria-hidden="true"></i><div><strong>48-hour hourly</strong><span>رسم مزدوج للحرارة والهطول.</span></div></li>
+                <li><i data-lucide="calendar-days" aria-hidden="true"></i><div><strong>7-day daily</strong><span>حرارة عظمى/صغرى، هطول، احتمالية مطر، ورياح.</span></div></li>
+                <li><i data-lucide="globe-2" aria-hidden="true"></i><div><strong>Timezone auto</strong><span>التوقيت المحلي للموقع المحدد.</span></div></li>
+              </ul>
+              <p class="slide-note slide-note--compact reveal" style="--i: 3">
+                <i data-lucide="info" aria-hidden="true"></i>
+                عند تقييم فعالية خارج نطاق التوقع، تُظهر الواجهة ملاحظة
+                صريحة بدلًا من تخمين نتيجة.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12 · CHARTS -->
+      <section
+        class="slide"
+        id="slide-12"
+        data-theme="light"
+        data-effect="slide"
+        data-title="الرسوم البيانية"
+        data-chapter="التجربة"
+        aria-label="الرسوم البيانية"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--blue"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> CHARTS &amp; VISUALIZATION</p>
+              <h2 class="slide__title">الرسوم ليست زينة.<br />إنها نفس البيانات.</h2>
+            </div>
+            <p class="slide__lede">
+              خمسة أنواع من الرسوم، كل واحد منها يقرأ مجموعة البيانات نفسها
+              التي بُنيت منها البطاقات — بلا أرقام منفصلة أو نتائج موازية.
+            </p>
+          </div>
+
+          <div class="chart-layout">
+            <div class="chart-list reveal" style="--i: 1">
+              <article><span class="chart-list__num">01</span><div><h3>Temperature range</h3><p>متوسط، عظمى، وصغرى على خط زمني.</p></div><i data-lucide="line-chart" aria-hidden="true"></i></article>
+              <article><span class="chart-list__num">02</span><div><h3>Precipitation history</h3><p>أعمدة يومية، وتمييز لوني عند تجاوز الحد.</p></div><i data-lucide="bar-chart-3" aria-hidden="true"></i></article>
+              <article><span class="chart-list__num">03</span><div><h3>Risk distribution</h3><p>أشرطة أفقية لنسب المخاطر الخمس.</p></div><i data-lucide="align-horizontal-distribute-center" aria-hidden="true"></i></article>
+              <article><span class="chart-list__num">04</span><div><h3>Seasonal comfort</h3><p>12 شهرًا، بألوان عتبات الراحة.</p></div><i data-lucide="calendar-range" aria-hidden="true"></i></article>
+              <article><span class="chart-list__num">05</span><div><h3>Forecast chart</h3><p>حرارة وهطول على محورين، 48 ساعة.</p></div><i data-lucide="chart-spline" aria-hidden="true"></i></article>
+              <p class="chart-list__foot"><span class="ltr" lang="en">Chart.js 4.4.4</span> · Empty state عند غياب البيانات</p>
+            </div>
+
+            <figure class="browser-frame browser-frame--charts reveal" style="--i: 2">
+              <div class="browser-frame__bar">
+                <span class="browser-dots"><i></i><i></i><i></i></span>
+                <span class="browser-frame__url">weather-parade / risk-overview</span>
+                <span class="browser-frame__live">REAL DATA</span>
+              </div>
+              <img
+                src="assets/app/overview.png"
+                alt="لقطة حقيقية من التطبيق تعرض مخططات الحرارة والهطول وتوزيع المخاطر ودرجة الراحة"
+                loading="lazy"
+              />
+              <figcaption>لقطة حقيقية من التطبيق — Cairo, 9 Nov 2026</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13 · NASA -->
+      <section
+        class="slide"
+        id="slide-13"
+        data-theme="dark"
+        data-effect="media"
+        data-title="NASA Explorer"
+        data-chapter="البيانات"
+        aria-label="NASA Explorer"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--blue"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> NASA EXPLORER</p>
+              <h2 class="slide__title">الأرض،<br />كما تُرى فعلًا.</h2>
+            </div>
+            <p class="slide__lede">
+              صورة <span class="ltr" lang="en">MODIS Terra True Color</span>
+              للتاريخ والموقع المحددين، مدمجة في الخريطة ومعاينة NASA
+              Explorer — لا صورة ثابتة ولا بيانات مصطنعة.
+            </p>
+          </div>
+
+          <div class="nasa-layout">
+            <figure class="sat-frame reveal" style="--i: 1">
+              <img
+                src="assets/app/nasa.png"
+                alt="لقطة حقيقية من التطبيق تعرض صورة NASA GIBS MODIS Terra لمنطقة القاهرة"
+                loading="lazy"
+              />
+              <div class="sat-frame__overlay">
+                <span class="sat-frame__tag" dir="ltr"><i class="hud-dot"></i> NASA GIBS · MODIS TERRA</span>
+                <span class="sat-frame__coords" dir="ltr">30.0444° N · 31.2357° E</span>
+              </div>
+              <figcaption>لقطة حقيقية من التطبيق — GIBS true-color preview</figcaption>
+            </figure>
+
+            <div class="nasa-side">
+              <div class="nasa-callout reveal" style="--i: 2">
+                <i data-lucide="satellite" aria-hidden="true"></i>
+                <div>
+                  <h3>تكامل فعلي داخل المتصفح</h3>
+                  <p>WMS preview + WMTS layer في Leaflet، بتاريخ صورة قابل للتغيير.</p>
+                </div>
+              </div>
+
+              <div class="nasa-links reveal" style="--i: 3">
+                <p>روابط NASA الرسمية</p>
+                <a href="https://worldview.earthdata.nasa.gov/" target="_blank" rel="noopener"><span>NASA Worldview</span><i data-lucide="external-link" aria-hidden="true"></i></a>
+                <a href="https://giovanni.gsfc.nasa.gov/" target="_blank" rel="noopener"><span>NASA Giovanni</span><i data-lucide="external-link" aria-hidden="true"></i></a>
+                <a href="https://disc.gsfc.nasa.gov/" target="_blank" rel="noopener"><span>NASA GES DISC</span><i data-lucide="external-link" aria-hidden="true"></i></a>
+                <a href="https://search.earthdata.nasa.gov/" target="_blank" rel="noopener"><span>Earthdata Search</span><i data-lucide="external-link" aria-hidden="true"></i></a>
+              </div>
+
+              <p class="slide-note slide-note--compact reveal" style="--i: 4">
+                <i data-lucide="triangle-alert" aria-hidden="true"></i>
+                الصور سياق بصري وليست طقسًا حيًا. التوفر يختلف حسب التاريخ
+                والطبقة، وبعض خدمات NASA تتطلب Earthdata login أو معالجة خادم.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14 · EVENT PLANNING -->
+      <section
+        class="slide"
+        id="slide-14"
+        data-theme="light"
+        data-effect="media"
+        data-title="تخطيط الفعالية"
+        data-chapter="التجربة"
+        aria-label="تخطيط الفعالية"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--success"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> EVENT PLANNING</p>
+              <h2 class="slide__title">حوّل التحليل<br />إلى قرار.</h2>
+            </div>
+            <p class="slide__lede">
+              عرّف الفعالية وحدودك المقبولة، ثم اقرأ ما يقوله السجل
+              التاريخي — مع فصل واضح للتوقع قصير المدى إن كان التاريخ داخل نطاقه.
+            </p>
+          </div>
+
+          <div class="planning-layout">
+            <ol class="plan-steps">
+              <li class="reveal" style="--i: 1"><span>01</span><div><h3>عرّف الفعالية</h3><p>الاسم، التاريخ، والمدة.</p></div></li>
+              <li class="reveal" style="--i: 2"><span>02</span><div><h3>حدد حدودك</h3><p>أدنى/أعلى حرارة، أقصى مطر، وأقصى رياح.</p></div></li>
+              <li class="reveal" style="--i: 3"><span>03</span><div><h3>اقرأ النتيجة</h3><p>كل سطر يعرض النسبة والعدد والحد المستخدم.</p></div></li>
+              <li class="reveal" style="--i: 4"><span>04</span><div><h3>تحقق من التوقع</h3><p>ملاحظة forecast منفصلة إذا كان التاريخ داخل النطاق.</p></div></li>
+            </ol>
+
+            <figure class="browser-frame browser-frame--compact reveal" style="--i: 2">
+              <div class="browser-frame__bar">
+                <span class="browser-dots"><i></i><i></i><i></i></span>
+                <span class="browser-frame__url">weather-parade / event-planning</span>
+                <span class="browser-frame__live browser-frame__live--success">EVENT BRIEF</span>
+              </div>
+              <img
+                src="assets/app/plan-result.png"
+                alt="لقطة حقيقية من التطبيق تعرض تقييم فعالية خارجية في القاهرة"
+                loading="lazy"
+              />
+              <figcaption>لقطة حقيقية من التطبيق — Outdoor concert · Cairo</figcaption>
+            </figure>
+          </div>
+
+          <p class="slide-note reveal" style="--i: 5">
+            <i data-lucide="info" aria-hidden="true"></i>
+            النتيجة ليست توصية مخترعة: كل سطر مرتبط بقيمة محسوبة من
+            التحليل، ونسبة forecast تُعرض فقط عندما يكون التاريخ داخل نطاق التوقع.
+          </p>
+        </div>
+      </section>
+
+      <!-- 15 · COMPARISON -->
+      <section
+        class="slide"
+        id="slide-15"
+        data-theme="light"
+        data-effect="slide"
+        data-title="مقارنة المواقع"
+        data-chapter="التجربة"
+        aria-label="مقارنة المواقع"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--blue"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> LOCATION COMPARISON</p>
+              <h2 class="slide__title">قارن التفاح<br />بالتفاح.</h2>
+            </div>
+            <p class="slide__lede">
+              أضف المواقع بعد تحليلها، لتقارن المطر والحرارة والرياح
+              ودرجة الراحة وعدد العينات — على نفس النافذة والحدود وقت التحليل.
+            </p>
+          </div>
+
+          <div class="comparison-layout">
+            <figure class="browser-frame browser-frame--wide reveal" style="--i: 1">
+              <div class="browser-frame__bar">
+                <span class="browser-dots"><i></i><i></i><i></i></span>
+                <span class="browser-frame__url">weather-parade / location-comparison</span>
+                <span class="browser-frame__live">2 LOCATIONS</span>
+              </div>
+              <img
+                src="assets/app/comparison.png"
+                alt="لقطة حقيقية من التطبيق تعرض مقارنة بين القاهرة والإسكندرية"
+                loading="lazy"
+              />
+              <figcaption>لقطة حقيقية من التطبيق — Cairo vs Alexandria · same window</figcaption>
+            </figure>
+
+            <div class="comparison-side">
+              <ul class="feature-list feature-list--tight reveal" style="--i: 2">
+                <li><i data-lucide="cloud-rain" aria-hidden="true"></i><div><strong>Rain / Heat / Wind</strong><span>نفس تعريفات المخاطر لكل موقع.</span></div></li>
+                <li><i data-lucide="gauge" aria-hidden="true"></i><div><strong>Comfort Score</strong><span>مؤشر التخطيط نفسه، بلا معادلة موازية.</span></div></li>
+                <li><i data-lucide="list-checks" aria-hidden="true"></i><div><strong>Sample count</strong><span>عدد الملاحظات الصالحة يظهر بجانب كل نتيجة.</span></div></li>
+              </ul>
+              <p class="slide-note slide-note--compact reveal" style="--i: 3">
+                <i data-lucide="triangle-alert" aria-hidden="true"></i>
+                إذا اختلفت النوافذ أو الحدود أو مصادر البيانات بين التحليلين،
+                تُعرض الملاحظة بوضوح: النتائج ليست قابلة للمقارنة المباشرة.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 16 · EXPORT -->
+      <section
+        class="slide"
+        id="slide-16"
+        data-theme="dark"
+        data-effect="fade"
+        data-title="التصدير والمشاركة"
+        data-chapter="التجربة"
+        aria-label="التصدير والمشاركة"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--sky"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> EXPORT &amp; SHARING</p>
+              <h2 class="slide__title">خذ الدليل<br />معك.</h2>
+            </div>
+            <p class="slide__lede">
+              أربع طرق مختلفة للخروج بالنتيجة: بيانات خام، حالة كاملة،
+              تقرير للطباعة، أو رابط يفتح نفس الإعدادات.
+            </p>
+          </div>
+
+          <div class="export-grid">
+            <article class="export-card reveal" style="--i: 1">
+              <span class="export-card__icon"><i data-lucide="file-spreadsheet" aria-hidden="true"></i></span>
+              <h3>CSV</h3>
+              <p>المقاييس المحسوبة + حتى 500 ملاحظة من العينة المستخدمة.</p>
+              <span class="export-card__tag">.csv · text/csv</span>
+            </article>
+            <article class="export-card reveal" style="--i: 2">
+              <span class="export-card__icon"><i data-lucide="braces" aria-hidden="true"></i></span>
+              <h3>JSON</h3>
+              <p>الحالة الكاملة: الموقع، التاريخ، النتائج، المصدر، والبيانات الوصفية.</p>
+              <span class="export-card__tag">.json · full state</span>
+            </article>
+            <article class="export-card reveal" style="--i: 3">
+              <span class="export-card__icon"><i data-lucide="printer" aria-hidden="true"></i></span>
+              <h3>Print / PDF</h3>
+              <p>تقرير نظيف عبر طباعة المتصفح أو Save as PDF.</p>
+              <span class="export-card__tag">window.print()</span>
+            </article>
+            <article class="export-card export-card--accent reveal" style="--i: 4">
+              <span class="export-card__icon"><i data-lucide="link-2" aria-hidden="true"></i></span>
+              <h3>Share link</h3>
+              <p>الموقع، التاريخ، والنافذة والحدود فقط. لا بيانات شخصية.</p>
+              <span class="export-card__tag">URL parameters</span>
+            </article>
+          </div>
+
+          <p class="slide-note reveal" style="--i: 5">
+            <i data-lucide="shield-check" aria-hidden="true"></i>
+            كل تصدير يحمل مصدر البيانات وحدودها؛ الرابط لا يحمل أسرارًا،
+            ويعيد بناء التحليل من الإعدادات العامة.
+          </p>
+        </div>
+      </section>
+
+      <!-- 17 · BILINGUAL -->
+      <section
+        class="slide"
+        id="slide-17"
+        data-theme="light"
+        data-effect="slide"
+        data-title="العربية والإنجليزية"
+        data-chapter="التجربة"
+        aria-label="التجربة ثنائية اللغة والاستجابة"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--sky"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> BILINGUAL &amp; RESPONSIVE</p>
+              <h2 class="slide__title">عربية أولًا،<br />وإنجليزية بلا ارتباك.</h2>
+            </div>
+            <p class="slide__lede">
+              الاتجاه يتغيّر، والمصطلحات التقنية تبقى واضحة. الواجهة تعمل
+              من سطح المكتب إلى الهاتف دون أن تفقد ترتيبها.
+            </p>
+          </div>
+
+          <div class="bilingual-layout">
+            <div class="lang-cards">
+              <article class="lang-card reveal" style="--i: 1">
+                <span class="lang-card__label">AR · RTL</span>
+                <h3>التحليل التاريخي</h3>
+                <p>درجة الراحة · تقييم المخاطر · تنبؤ قصير المدى</p>
+                <span class="lang-card__font">Cairo</span>
+              </article>
+              <article class="lang-card lang-card--en reveal" style="--i: 2" dir="ltr" lang="en">
+                <span class="lang-card__label">EN · LTR</span>
+                <h3>Historical Analysis</h3>
+                <p>Comfort Score · Weather Risk Assessment · Short-Term Forecast</p>
+                <span class="lang-card__font">Inter / Poppins</span>
+              </article>
+            </div>
+
+            <div class="responsive-panel reveal" style="--i: 3">
+              <div class="responsive-panel__copy">
+                <h3>Responsive by intent</h3>
+                <p>نقاط توقف مصممة، لا تصغير تلقائي. الشريط، البطاقات، والجداول تعيد ترتيب نفسها.</p>
+                <div class="breakpoint-chips">
+                  <span>1180</span><span>1040</span><span>900</span><span>720</span><span>520</span>
+                </div>
+              </div>
+              <div class="phone-frame">
+                <img src="assets/app/mobile-hero.png" alt="لقطة حقيقية من التطبيق على شاشة هاتف" loading="lazy" />
+              </div>
+            </div>
+          </div>
+
+          <p class="slide-note reveal" style="--i: 4">
+            <i data-lucide="languages" aria-hidden="true"></i>
+            اللغة المفضلة تُحفظ محليًا في المتصفح، والاتجاه RTL/LTR يُطبّق
+            على الواجهة كاملة — لا على النصوص وحدها.
+          </p>
+        </div>
+      </section>
+
+      <!-- 18 · RELIABILITY -->
+      <section
+        class="slide"
+        id="slide-18"
+        data-theme="light"
+        data-effect="slide"
+        data-title="الموثوقية"
+        data-chapter="الجودة"
+        aria-label="الموثوقية والتعامل مع البيانات"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--success"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> RELIABILITY &amp; DATA HANDLING</p>
+              <h2 class="slide__title">عندما تغيب البيانات،<br />نقول ذلك.</h2>
+            </div>
+            <p class="slide__lede">
+              الحالة الفارغة ليست عيبًا في التصميم. إنها نتيجة صادقة عندما
+              لا تكفي الملاحظات لتكوين حكم موثوق.
+            </p>
+          </div>
+
+          <div class="state-grid">
+            <article class="state-card reveal" style="--i: 1">
+              <span class="state-card__badge state-card__badge--loading">LOADING</span>
+              <h3>انتظار واضح</h3>
+              <p>حالة تحميل أثناء جلب الأرشيف أو التوقع، بلا أرقام مؤقتة.</p>
+            </article>
+            <article class="state-card reveal" style="--i: 2">
+              <span class="state-card__badge state-card__badge--ready">READY</span>
+              <h3>بيانات + عينة</h3>
+              <p>النتيجة تُعرض مع عدد الملاحظات الصالحة والتغطية والمصدر.</p>
+            </article>
+            <article class="state-card reveal" style="--i: 3">
+              <span class="state-card__badge state-card__badge--error">ERROR</span>
+              <h3>رسالة قابلة للفهم</h3>
+              <p>فشل API يُعرض كخطأ، لا كقيمة صفر مضللة.</p>
+            </article>
+            <article class="state-card reveal" style="--i: 4">
+              <span class="state-card__badge state-card__badge--insufficient">INSUFFICIENT</span>
+              <h3>لا نتائج مضللة</h3>
+              <p>أقل من 10 ملاحظات صالحة → Insufficient Data بدلًا من احتمال وهمي.</p>
+            </article>
+          </div>
+
+          <div class="reliability-strip reveal" style="--i: 5">
+            <span><i data-lucide="filter" aria-hidden="true"></i> Valid numeric values only</span>
+            <span><i data-lucide="timer" aria-hidden="true"></i> API timeouts: 10 / 15 / 25s</span>
+            <span><i data-lucide="database" aria-hidden="true"></i> Cache TTL: 10 min</span>
+            <span><i data-lucide="search" aria-hidden="true"></i> Debounced search</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 19 · TECH STACK -->
+      <section
+        class="slide"
+        id="slide-19"
+        data-theme="dark"
+        data-effect="fade"
+        data-title="التقنيات"
+        data-chapter="البناء"
+        aria-label="التقنيات المستخدمة"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--blue"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> TECHNOLOGY STACK</p>
+              <h2 class="slide__title">تقنية بسيطة،<br />مقصودة.</h2>
+            </div>
+            <p class="slide__lede">
+              لا Framework جديد لمجرد التفضيل. الموقع مبني على
+              <span class="ltr" lang="en">ES Modules</span> أصلية، مع مكتبات
+              فقط حيث تضيف قيمة واضحة.
+            </p>
+          </div>
+
+          <div class="stack-layout">
+            <div class="stack-grid">
+              <article class="stack-item reveal" style="--i: 1"><span class="stack-item__kind">CORE</span><h3>HTML5 · CSS3</h3><p>بنية دلالية، Grid/Flex، وResponsive مقصود.</p></article>
+              <article class="stack-item reveal" style="--i: 2"><span class="stack-item__kind">CORE</span><h3>Vanilla JS</h3><p>ES Modules أصلية، بلا React / Next / Vue / Angular.</p></article>
+              <article class="stack-item reveal" style="--i: 3"><span class="stack-item__kind">MAP</span><h3>Leaflet 1.9.4</h3><p>خريطة تفاعلية، علامة قابلة للسحب، وطبقة NASA.</p></article>
+              <article class="stack-item reveal" style="--i: 4"><span class="stack-item__kind">CHARTS</span><h3>Chart.js 4.4.4</h3><p>خمسة أنواع من الرسوم، مع Empty states.</p></article>
+              <article class="stack-item reveal" style="--i: 5"><span class="stack-item__kind">3D</span><h3>Three.js</h3><p>كرة أرضية محلية في Hero، بلا اعتماد على CDN للنسيج.</p></article>
+              <article class="stack-item reveal" style="--i: 6"><span class="stack-item__kind">ICONS</span><h3>Lucide 0.468.0</h3><p>أيقونات متسقة، بلا Emoji في الواجهة.</p></article>
+              <article class="stack-item reveal" style="--i: 7"><span class="stack-item__kind">SERVER</span><h3>Express</h3><p>خادم ثابت اختياري لخدمة public/.</p></article>
+              <article class="stack-item reveal" style="--i: 8"><span class="stack-item__kind">DATA</span><h3>Open-Meteo · OSM · NASA GIBS</h3><p>API حقيقية، مع فصل واضح للمصادر.</p></article>
+            </div>
+
+            <aside class="architecture reveal" style="--i: 4">
+              <div class="architecture__row"><span>Browser</span><i data-lucide="arrow-left" aria-hidden="true"></i><span>ES Modules</span></div>
+              <div class="architecture__center">
+                <i data-lucide="monitor" aria-hidden="true"></i>
+                <strong>Weather Parade</strong>
+                <span>static frontend</span>
+              </div>
+              <div class="architecture__apis">
+                <span>Open-Meteo</span>
+                <span>Nominatim / OSM</span>
+                <span>NASA GIBS</span>
+              </div>
+              <p>لا أسرار في الواجهة. الطلبات تذهب مباشرة إلى الخدمات العامة.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- 20 · DEMO -->
+      <section
+        class="slide"
+        id="slide-20"
+        data-theme="dark"
+        data-effect="media"
+        data-title="رحلة المستخدم"
+        data-chapter="العرض"
+        aria-label="رحلة المستخدم"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--blue"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> USER JOURNEY · REAL UI</p>
+              <h2 class="slide__title">الرحلة في<br />خمس خطوات.</h2>
+            </div>
+            <p class="slide__lede">
+              من بحث عن مدينة إلى قرار موثّق. كل لقطة أدناه من التطبيق
+              الحقيقي، وليست Mockup أو نتيجة مُختلقة.
+            </p>
+          </div>
+
+          <ol class="journey-steps reveal" style="--i: 1">
+            <li><span>01</span><b>اختر الموقع</b><small>search / map</small></li>
+            <li><span>02</span><b>حدد النافذة</b><small>month / ±2 days</small></li>
+            <li><span>03</span><b>شغّل التحليل</b><small>historical probabilities</small></li>
+            <li><span>04</span><b>أضف السياق</b><small>forecast + NASA</small></li>
+            <li><span>05</span><b>قارن وصدّر</b><small>compare / share</small></li>
+          </ol>
+
+          <div class="journey-gallery">
+            <figure class="journey-shot reveal" style="--i: 2">
+              <img src="assets/app/historical.png" alt="شاشة اختيار الموقع والخريطة في التطبيق" loading="lazy" />
+              <figcaption><span>01</span> Location &amp; map</figcaption>
+            </figure>
+            <figure class="journey-shot reveal" style="--i: 3">
+              <img src="assets/app/risks.png" alt="شاشة نتائج تقييم المخاطر في التطبيق" loading="lazy" />
+              <figcaption><span>03</span> Risk results</figcaption>
+            </figure>
+            <figure class="journey-shot reveal" style="--i: 4">
+              <img src="assets/app/nasa.png" alt="شاشة NASA Explorer في التطبيق" loading="lazy" />
+              <figcaption><span>04</span> NASA context</figcaption>
+            </figure>
+          </div>
+
+          <p class="journey-cta reveal" style="--i: 5">
+            <span>كل هذه النتائج قابلة لإعادة الإنتاج من داخل التطبيق.</span>
+            <a class="text-link" href="../index.html" target="_blank" rel="noopener">
+              افتح Weather Parade <i data-lucide="arrow-up-left" aria-hidden="true"></i>
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <!-- 21 · LIMITATIONS -->
+      <section
+        class="slide"
+        id="slide-21"
+        data-theme="light"
+        data-effect="slide"
+        data-title="الحدود"
+        data-chapter="الدقة العلمية"
+        aria-label="الحدود والدقة العلمية"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="glow glow--danger"></div>
+          <div class="grid-lines"></div>
+        </div>
+        <div class="slide__content">
+          <div class="slide__head slide__head--split reveal" style="--i: 0">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> LIMITATIONS &amp; SCIENTIFIC ACCURACY</p>
+              <h2 class="slide__title">ما لا تدّعيه<br />المنصة.</h2>
+            </div>
+            <p class="slide__lede">
+              الدقة العلمية تبدأ بمعرفة حدود الأداة. هذه ليست قائمة
+              تحذيرات شكلية؛ إنها شروط لقراءة النتائج بشكل صحيح.
+            </p>
+          </div>
+
+          <div class="limits-layout">
+            <div class="limits-col limits-col--no reveal" style="--i: 1">
+              <h3><i data-lucide="circle-slash" aria-hidden="true"></i> ليست</h3>
+              <ul>
+                <li>توقعًا بعيد المدى لتاريخ مستقبلي.</li>
+                <li>بديلًا عن التحذيرات الرسمية للطقس.</li>
+                <li>مؤشرًا طقسًا رسميًا أو معياريًا.</li>
+                <li>صورة حية للطقس الحالي.</li>
+                <li>تكاملًا مباشرًا مع كل خدمات NASA.</li>
+              </ul>
+            </div>
+            <div class="limits-col limits-col--yes reveal" style="--i: 2">
+              <h3><i data-lucide="check" aria-hidden="true"></i> هي</h3>
+              <ul>
+                <li>احتمالات من ملاحظات تاريخية صالحة.</li>
+                <li>توقعات قصيرة منفصلة ومعلّمة.</li>
+                <li>صور NASA مع مصدرها وتاريخها.</li>
+                <li>مؤشر تخطيطي موثّق القواعد.</li>
+                <li>واجهة تُظهر نقص البيانات بدلًا من ملئه.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="statement statement--light reveal" style="--i: 3">
+            «لا نعرف طقس يومك القادم بعد أشهر. نعرف كيف تصرّف الطقس
+            سابقًا — وهذا ما نعرضه.»
+          </p>
+        </div>
+      </section>
+
+      <!-- 22 · CLOSING -->
+      <section
+        class="slide slide--closing"
+        id="slide-22"
+        data-theme="dark"
+        data-effect="scale"
+        data-title="الخاتمة"
+        data-chapter="النهاية"
+        aria-label="الخاتمة"
+      >
+        <div class="slide__bg" aria-hidden="true">
+          <div class="closing-earth"></div>
+          <div class="cover-stars"></div>
+          <div class="cover-glow"></div>
+          <div class="cover-grid"></div>
+        </div>
+        <div class="slide__content closing">
+          <p class="eyebrow reveal" style="--i: 0">
+            <span class="eyebrow__dot"></span> WEATHER PARADE · NASA SPACE APPS CHALLENGE
+          </p>
+          <h2 class="closing__title reveal" style="--i: 1">
+            الطقس له ذاكرة.<br />
+            <em>والقرار الأفضل يبدأ منها.</em>
+          </h2>
+          <p class="closing__tagline reveal" style="--i: 2" dir="ltr" lang="en">
+            Weather Parade — Will It Rain On My Parade?
+          </p>
+          <p class="closing__lede reveal" style="--i: 3">
+            تحليل تاريخي شفاف، توقعات قصيرة منفصلة، وصور Earth observation
+            حقيقية — لاتخاذ قرار خارجي أقل ارتباكًا.
+          </p>
+          <div class="closing__actions reveal" style="--i: 4">
+            <a class="btn btn--primary" href="../index.html" target="_blank" rel="noopener">
+              <span>افتح التطبيق</span>
+              <i data-lucide="arrow-up-left" aria-hidden="true"></i>
+            </a>
+            <button type="button" class="btn btn--ghost" data-action="restart">
+              <span>أعد العرض من البداية</span>
+              <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="closing__credits reveal" style="--i: 5">
+            <span><bdi>Data</bdi> Open-Meteo · OpenStreetMap / Nominatim · NASA GIBS</span>
+            <span><bdi>Imagery</bdi> NASA Blue Marble / MODIS Terra</span>
+            <span><bdi>Project</bdi> Independent NASA Space Apps Challenge · not an official NASA product</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="deck-veil" id="deck-veil" aria-hidden="true"></div>
+
+    <footer class="deck-bottom" id="deck-bottom">
+      <div class="deck-counter" aria-live="polite">
+        <b id="deck-current">01</b>
+        <span>/</span>
+        <span id="deck-total">22</span>
+      </div>
+
+      <nav class="deck-dots" id="deck-dots" aria-label="التنقل بين الشرائح"></nav>
+
+      <div class="deck-nav">
+        <span class="deck-hint" id="deck-hint">← التالي · → السابق</span>
+        <button type="button" class="deck-arrow" data-action="prev" aria-label="الشريحة السابقة">
+          <i data-lucide="chevron-right" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="deck-arrow deck-arrow--next" data-action="next" aria-label="الشريحة التالية">
+          <i data-lucide="chevron-left" aria-hidden="true"></i>
+        </button>
+      </div>
+    </footer>
+
+    <aside class="deck-overview" id="deck-overview" aria-label="نظرة عامة على جميع الشرائح" hidden>
+      <div class="deck-overview__head">
+        <div>
+          <p class="eyebrow"><span class="eyebrow__dot"></span> ALL SLIDES</p>
+          <h2>نظرة عامة</h2>
+        </div>
+        <button type="button" class="deck-tool deck-tool--icon" data-action="overview-close" aria-label="إغلاق النظرة العامة">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="overview-grid" id="overview-grid"></div>
+    </aside>
+
+    <div class="deck-modal" id="deck-help" role="dialog" aria-modal="true" aria-labelledby="help-title" hidden>
+      <div class="deck-modal__panel">
+        <button type="button" class="deck-tool deck-tool--icon deck-modal__close" data-action="help-close" aria-label="إغلاق المساعدة">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+        <p class="eyebrow"><span class="eyebrow__dot"></span> KEYBOARD SHORTCUTS</p>
+        <h2 id="help-title">التحكم في العرض</h2>
+        <div class="shortcut-grid">
+          <div><kbd>←</kbd><span>التالي (في RTL)</span></div>
+          <div><kbd>→</kbd><span>السابق (في RTL)</span></div>
+          <div><kbd>Space</kbd><span>الشريحة التالية</span></div>
+          <div><kbd>PageUp</kbd><span>السابق</span></div>
+          <div><kbd>PageDown</kbd><span>التالي</span></div>
+          <div><kbd>Home</kbd><span>البداية</span></div>
+          <div><kbd>End</kbd><span>النهاية</span></div>
+          <div><kbd>O</kbd><span>النظرة العامة</span></div>
+          <div><kbd>F</kbd><span>ملء الشاشة</span></div>
+          <div><kbd>P</kbd><span>وضع العرض</span></div>
+          <div><kbd>Esc</kbd><span>إغلاق النوافذ</span></div>
+          <div><kbd>?</kbd><span>هذه المساعدة</span></div>
+        </div>
+        <p class="deck-modal__note">
+          على الهاتف: اسحب أفقيًا للتنقل. الأزرار الدائرية أسفل الشاشة تعمل دائمًا.
+        </p>
+      </div>
+    </div>
+
+    <div class="deck-toast" id="deck-toast" role="status" aria-live="polite"></div>
+
+    <script src="../vendor/lucide.min.js"></script>
+    <script type="module" src="js/presentation.js"></script>
+  </body>
+</html>

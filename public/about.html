@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Methodology &amp; Data — Weather Parade</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <meta
+      name="description"
+      content="How Weather Parade turns historical weather observations into clear outdoor event risk analysis, which data sources it uses, and what its limits are."
+    />
+    <meta name="theme-color" content="#0B1F44" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+  </head>
+  <body class="page-body">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-nav site-nav--static">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html" aria-label="Weather Parade home">
+          <img class="brand__mark" src="assets/logo-mark.svg" alt="" width="42" height="37" />
+          <span class="brand__words">
+            <span class="brand__weather">Weather</span>
+            <span class="brand__parade">Parade</span>
+          </span>
+        </a>
+
+        <nav class="nav-links" aria-label="Page navigation">
+          <a href="#method">Method</a>
+          <a href="#risks">Risk model</a>
+          <a href="#sources">Data sources</a>
+          <a href="#limits">Limits</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a class="btn btn--secondary btn--sm nav-cta" href="index.html">
+            <i data-lucide="arrow-left" aria-hidden="true"></i>
+            <span>Back to the app</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="page-hero__grid-bg" aria-hidden="true"></div>
+        <div class="container page-hero__inner">
+          <p class="eyebrow eyebrow--light">
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            Methodology &amp; data
+          </p>
+          <h1>Science you can<br /><span class="page-hero__accent">see through.</span></h1>
+          <p class="page-hero__lede">
+            Weather Parade reads past weather, not the future. Every percentage on the site
+            comes from a stated observation window, a stated threshold, and a sample you can
+            inspect — with NASA imagery and research workflows kept clearly separate.
+          </p>
+
+          <dl class="page-hero__stats">
+            <div>
+              <dt>Observation window</dt>
+              <dd>10+ years</dd>
+            </div>
+            <div>
+              <dt>Risk dimensions</dt>
+              <dd>Five</dd>
+            </div>
+            <div>
+              <dt>Imagery source</dt>
+              <dd>NASA GIBS</dd>
+            </div>
+            <div>
+              <dt>Forecast horizon</dt>
+              <dd>Short term</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section page-section" id="method">
+        <div class="container page-layout">
+          <article class="page-prose">
+            <p class="eyebrow">The method</p>
+            <h2>From daily observations to a planning signal.</h2>
+            <p class="page-prose__lede">
+              For a chosen location, month, and day window, the app fetches daily archive values
+              and counts how often each condition was met. It is a frequency statement about the
+              past — not a deterministic claim about a future date.
+            </p>
+
+            <ol class="step-list">
+              <li class="step-row">
+                <span class="step-row__num">01</span>
+                <div>
+                  <h3>Fetch the archive</h3>
+                  <p>
+                    Daily maximum, minimum, and mean temperature, precipitation sum, and maximum
+                    wind speed are requested from the Open-Meteo Archive API for the selected
+                    year range.
+                  </p>
+                </div>
+              </li>
+              <li class="step-row">
+                <span class="step-row__num">02</span>
+                <div>
+                  <h3>Build the window</h3>
+                  <p>
+                    A selected day uses a ±2-day window to improve sample size. A full-month
+                    selection uses every day in that month. Only valid numeric observations are
+                    counted.
+                  </p>
+                </div>
+              </li>
+              <li class="step-row">
+                <span class="step-row__num">03</span>
+                <div>
+                  <h3>Apply explicit thresholds</h3>
+                  <p>
+                    Heat ≥ 32 °C · Cold ≤ 5 °C · Rain ≥ 1 mm · Wind ≥ 35 km/h. Thresholds are
+                    visible and editable, so the definition of a “risky” day is never hidden.
+                  </p>
+                </div>
+              </li>
+              <li class="step-row">
+                <span class="step-row__num">04</span>
+                <div>
+                  <h3>Count qualifying days</h3>
+                  <p>
+                    Probability = qualifying observations ÷ total valid observations × 100. The
+                    interface always shows the count, the sample size, and coverage alongside the
+                    percentage.
+                  </p>
+                </div>
+              </li>
+            </ol>
+
+            <div class="formula-card">
+              <span class="formula-card__label">Probability</span>
+              <p class="formula-card__eq">
+                qualifying observations <span>÷</span> total valid observations
+                <span>×</span> 100
+              </p>
+              <p class="formula-card__note">
+                Sparse locations or periods fall back to “Insufficient data” rather than guessing.
+              </p>
+            </div>
+
+            <h2 id="risks">The five risk dimensions</h2>
+            <p>
+              The risk rows translate raw archive values into the conditions that most often ruin
+              an outdoor event. Each one is a simple, inspectable rule.
+            </p>
+
+            <ul class="page-risk-list">
+              <li>
+                <span class="page-risk-list__icon page-risk-list__icon--danger"
+                  ><i data-lucide="thermometer-sun" aria-hidden="true"></i
+                ></span>
+                <div>
+                  <h3>Very Hot</h3>
+                  <p>Days whose maximum temperature reaches or exceeds the heat threshold.</p>
+                </div>
+              </li>
+              <li>
+                <span class="page-risk-list__icon page-risk-list__icon--info"
+                  ><i data-lucide="thermometer-snowflake" aria-hidden="true"></i
+                ></span>
+                <div>
+                  <h3>Very Cold</h3>
+                  <p>Days whose minimum temperature drops to or below the cold threshold.</p>
+                </div>
+              </li>
+              <li>
+                <span class="page-risk-list__icon page-risk-list__icon--muted"
+                  ><i data-lucide="wind" aria-hidden="true"></i
+                ></span>
+                <div>
+                  <h3>Very Windy</h3>
+                  <p>Days whose maximum wind speed reaches or exceeds the wind threshold.</p>
+                </div>
+              </li>
+              <li>
+                <span class="page-risk-list__icon page-risk-list__icon--rain"
+                  ><i data-lucide="cloud-rain" aria-hidden="true"></i
+                ></span>
+                <div>
+                  <h3>Very Wet</h3>
+                  <p>Days whose total precipitation reaches or exceeds the rain threshold.</p>
+                </div>
+              </li>
+              <li>
+                <span class="page-risk-list__icon page-risk-list__icon--warning"
+                  ><i data-lucide="gauge" aria-hidden="true"></i
+                ></span>
+                <div>
+                  <h3>Very Uncomfortable</h3>
+                  <p>
+                    The inverse of the transparent comfort score, combining the four risks above
+                    into a single planning indicator. It is not an official meteorological index.
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <h2 id="sources">Data sources, kept distinct</h2>
+            <p>
+              The app deliberately separates observations, short-term forecasts, and imagery.
+              Hover labels and section notes state which is which.
+            </p>
+
+            <div class="source-table-wrap">
+              <table class="source-table">
+                <caption class="sr-only">Weather Parade data sources and their roles</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Source</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Open-Meteo Archive</th>
+                    <td>Historical daily values used for probability calculations</td>
+                    <td><span class="tag tag--observation">Observation</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Open-Meteo Forecast</th>
+                    <td>Current conditions and a short-term outlook</td>
+                    <td><span class="tag tag--forecast">Forecast</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">OpenStreetMap / Nominatim</th>
+                    <td>Location search, reverse geocoding, and base map tiles</td>
+                    <td><span class="tag">Reference</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">NASA GIBS</th>
+                    <td>MODIS Terra corrected reflectance imagery for the selected date</td>
+                    <td><span class="tag tag--nasa">Imagery</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">NASA Worldview · Giovanni · GES DISC · Earthdata Search</th>
+                    <td>Official research and dataset discovery workflows</td>
+                    <td><span class="tag tag--nasa">Research links</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 id="limits">What this app does not claim</h2>
+            <ul class="limit-list">
+              <li>
+                <i data-lucide="circle-slash" aria-hidden="true"></i>
+                <p>
+                  <strong>No long-range forecast.</strong> Probabilities describe past frequency,
+                  not a prediction for a specific future date.
+                </p>
+              </li>
+              <li>
+                <i data-lucide="circle-slash" aria-hidden="true"></i>
+                <p>
+                  <strong>No fabricated NASA data.</strong> GIBS imagery loads from NASA’s public
+                  service. Direct GES DISC or Earthdata downloads may require authentication and
+                  are linked, not simulated.
+                </p>
+              </li>
+              <li>
+                <i data-lucide="circle-slash" aria-hidden="true"></i>
+                <p>
+                  <strong>No official warning role.</strong> For safety-critical decisions, always
+                  consult the relevant national meteorological service.
+                </p>
+              </li>
+              <li>
+                <i data-lucide="circle-slash" aria-hidden="true"></i>
+                <p>
+                  <strong>No hidden assumptions.</strong> Thresholds, windows, sample counts, and
+                  coverage are visible in the interface and included in exports.
+                </p>
+              </li>
+            </ul>
+          </article>
+
+          <aside class="page-aside">
+            <div class="page-aside__card">
+              <p class="eyebrow">On this page</p>
+              <nav class="page-toc" aria-label="On this page">
+                <a href="#method">The method</a>
+                <a href="#risks">Five risk dimensions</a>
+                <a href="#sources">Data sources</a>
+                <a href="#limits">Limits &amp; honesty</a>
+              </nav>
+            </div>
+
+            <div class="page-aside__card page-aside__card--dark">
+              <p class="eyebrow eyebrow--light">NASA Space Apps</p>
+              <h3>An independent challenge project.</h3>
+              <p>
+                Weather Parade explores Earth observation data for outdoor event planning. It is
+                not an official NASA product, and NASA does not endorse its outputs.
+              </p>
+              <a
+                class="btn btn--ghost-light btn--block"
+                href="https://www.spaceappschallenge.org/2025/challenges/will-it-rain-on-my-parade/"
+                target="_blank"
+                rel="noopener"
+              >
+                <span>About the challenge</span>
+                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <div class="page-aside__card">
+              <p class="eyebrow">Attribution</p>
+              <ul class="attribution-list">
+                <li>
+                  <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>
+                  <span>Weather archive &amp; forecast</span>
+                </li>
+                <li>
+                  <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener"
+                    >OpenStreetMap</a
+                  >
+                  <span>Map data &amp; geocoding</span>
+                </li>
+                <li>
+                  <a href="https://gibs.earthdata.nasa.gov/" target="_blank" rel="noopener"
+                    >NASA GIBS</a
+                  >
+                  <span>Satellite imagery</span>
+                </li>
+                <li>
+                  <a href="https://threejs.org/" target="_blank" rel="noopener">Three.js</a>
+                  <span>Earth visualization</span>
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page-cta">
+        <div class="container page-cta__inner">
+          <div>
+            <p class="eyebrow eyebrow--light">Ready when you are</p>
+            <h2>Put a real place and date under the lens.</h2>
+          </div>
+          <a class="btn btn--primary" href="index.html">
+            <span>Open Weather Parade</span>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer__bottom footer__bottom--single">
+          <p>© 2026 Weather Parade. Independent NASA Space Apps Challenge project.</p>
+          <p>
+            Data sources: Open-Meteo (forecast/archive), OpenStreetMap/Nominatim, NASA
+            GIBS/Worldview/Giovanni/Earthdata links.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script>
+      if (window.lucide) window.lucide.createIcons();
+    </script>
+  </body>
+</html>

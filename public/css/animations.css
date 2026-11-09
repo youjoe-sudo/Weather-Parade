@@ -1,0 +1,91 @@
+/* Weather Parade — restrained motion */
+
+.fade-in {
+  animation: fadeIn 0.4s var(--ease) both;
+}
+
+.hero__copy > * {
+  animation: riseIn 0.75s var(--ease) both;
+}
+
+.hero__copy > *:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.hero__copy > *:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.hero__copy > *:nth-child(4) {
+  animation-delay: 0.18s;
+}
+
+.hero__copy > *:nth-child(5),
+.hero__copy > *:nth-child(6),
+.hero__copy > *:nth-child(7) {
+  animation-delay: 0.24s;
+}
+
+.hero__visual {
+  animation: fadeIn 1.2s 0.18s var(--ease) both;
+}
+
+.chart-card,
+.risk-line,
+.compare__col {
+  transition: background-color 0.22s var(--ease);
+}
+
+.risk-line:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.section--surface .risk-line:hover {
+  background: rgba(255, 255, 255, 0.48);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero__copy > *,
+  .hero__visual {
+    animation: none;
+  }
+
+  #earth-canvas {
+    transition: none;
+  }
+
+  .wp-marker__pulse,
+  .workspace__status.is-loading .status-dot,
+  .boot-screen__bar span {
+    animation: none !important;
+  }
+}
